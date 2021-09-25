@@ -7,45 +7,59 @@ DOCS    = README README.md
 
 SETUP  = $(PYTHON) setup.py
 
-PYPI   = pypi
-CHECK  = twine check $(FILES)
-UPLOAD = twine upload -r $(PYPI) --skip-existing $(FILES)
-FILES  = dist/*
+CLEANFILES = build dist *.egg* *.el __pycache__ .tox
+MAKEFLAGS  = --no-print-directory
 
-CLEANFILES = build dist *.egg* *.zip *.el __pycache__ .tox
+all: help
 
-MAKEFLAGS = --no-print-directory
-
-all: develop
-
-develop:
+dev: ## Set up for developing
 	pip install -e .
 
-check:;	$(CHECK)
+# Packaging.
 
-wheel sdist:
-	$(SETUP) $@ $(OPTS)
+wheel sdist: ## Build packages
+	$(PYTHON) setup.py $@ $(OPTS)
 
-upload:	docs wheel sdist
-	$(UPLOAD)
+docs: $(DOCS) ## Update doc files
 
-upload-test: wheel sdist
-	@ $(MAKE) upload PYPI=pypitest
+# Testing.
 
-verify:	test flake
+check: test flake mypy ## Run all tests
 
-test:
+test: ## Run package tests
 	$(PYTHON) -m pytest -v
 
-flake:
+flake: ## Run flake8 on sources
 	flake8 $(SOURCES)
 
-docs: $(DOCS)
+mypy: ## Run mypy on sources
+	mypy $(SOURCES)
+
+# Uploading to PyPI.
+
+PYPI   = pypi
+FILES  = dist/*
+
+upload-check: ## Check uploads
+	twine check $(FILES)
+
+upload-test: wheel sdist ## Upload to pypitest
+	@ $(MAKE) upload PYPI=pypitest
+
+upload:	docs wheel sdist ## Upload to pypi
+	twine upload -r $(PYPI) --skip-existing $(FILES)
+
+# Other targets.
 
 %.md: %
 	pandoc -f rst -o $<.md $<
 
-clean:
-	$(SETUP) $@
+clean: ## Clean up
 	find . -name '*.py[co]' | xargs rm
 	rm -rf $(CLEANFILES)
+
+help: ## This help message
+	@ echo Targets:
+	@ echo
+	@ grep -h ":.*##" $(MAKEFILE_LIST) | grep -v 'sed -e' | \
+	  sed -e 's/:.*##/:/' | column -t -s:
