@@ -17,7 +17,7 @@ dev: ## Set up for developing
 
 # Packaging.
 
-wheel sdist: ## Build packages
+wheel sdist: docs ## Build packages
 	$(PYTHON) setup.py $@ $(OPTS)
 
 docs: $(DOCS) ## Update doc files
@@ -46,7 +46,7 @@ upload-check: ## Check uploads
 upload-test: wheel sdist ## Upload to pypitest
 	@ $(MAKE) upload PYPI=pypitest
 
-upload:	docs wheel sdist ## Upload to pypi
+upload: wheel sdist ## Upload to pypi
 	twine upload -r $(PYPI) --skip-existing $(FILES)
 
 # Other targets.
