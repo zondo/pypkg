@@ -1,6 +1,6 @@
 # Makefile for pypkg.
 
-include conf/Makefile.conf
+include conf/config.mk
 
 SOURCES = pypkg.py
 DOCS    = README README.md

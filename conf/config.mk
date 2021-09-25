@@ -1,20 +1,17 @@
 # Makefile for system configuration variables.
 
-# Version info.
-PY = 3
-
 # Operating system.
 OS = $(shell uname -o)
 
 # OS and drive variables.
 ifeq (${OS}, GNU/Linux)
-PYTHON = python$(PY)
+PYTHON = python3
 OSNAME = linux
 LINUX = true
 endif
 
 ifeq (${OS}, Msys)
-PYTHON = py -$(PY)
+PYTHON = py -3
 OSNAME = windows
 WINDOWS = true
 endif

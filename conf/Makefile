@@ -1,6 +1,6 @@
-# Makefile for package configuration.
+# Makefile for pinning requirements.
 
-include Makefile.conf
+include config.mk
 
 REQ = requirements
 DEV = dev-requirements
