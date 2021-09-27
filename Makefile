@@ -57,9 +57,3 @@ upload: wheel sdist ## Upload to pypi
 clean: ## Clean up
 	find . -name '*.py[co]' | xargs rm
 	rm -rf $(CLEANFILES)
-
-help: ## This help message
-	@ echo Targets:
-	@ echo
-	@ grep -h ":.*##" $(MAKEFILE_LIST) | grep -v 'sed -e' | \
-	  sed -e 's/:.*##/:/' | column -t -s:

@@ -1,17 +1,24 @@
-# Makefile for system configuration variables.
+# Common config stuff.
 
-# Operating system.
-OS = $(shell uname -o)
+# Detect operating system.
+OS = $(shell uname)
 
-# OS and drive variables.
-ifeq (${OS}, GNU/Linux)
+ifeq (${OS}, Linux)
 PYTHON = python3
 OSNAME = linux
 LINUX = true
-endif
-
-ifeq (${OS}, Msys)
+else ifeq (${OS}, Darwin)
+PYTHON = python3
+OSNAME = mac
+MAC = true
+else ifeq (${OS}, Msys)
 PYTHON = py -3
 OSNAME = windows
 WINDOWS = true
 endif
+
+help: ## This help message
+	@ echo "Usage: make [target]"
+	@ echo
+	@ grep -h ":.*##" $(MAKEFILE_LIST) | grep -v 'sed -e' | \
+	  sed -e 's/:.*##/:/' | column -t -s:
