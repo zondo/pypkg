@@ -18,4 +18,4 @@ you like.  Summary of features:
   to PyPI), with cute self-documenting help gimmick.
 
 For best results, you'll need to install several python packages
-(pip-tools, flake8, mypy, twine) and pandoc.
+(pip-tools, build, twine, flake8, mypy) and pandoc.

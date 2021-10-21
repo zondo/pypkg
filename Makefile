@@ -5,10 +5,10 @@ include conf/config.mk
 SOURCES = pypkg.py
 DOCS    = README README.md
 
-SETUP  = $(PYTHON) setup.py
-
 CLEANFILES = build dist *.egg* *.el __pycache__ .tox
 MAKEFLAGS  = --no-print-directory
+
+TOOLS = pip-tools build twine flake8 mypy
 
 all: help
 
@@ -17,8 +17,8 @@ dev: ## Set up for developing
 
 # Packaging.
 
-wheel sdist: docs ## Build packages
-	$(PYTHON) setup.py $@ $(OPTS)
+build: docs ## Build packages
+	$(PYTHON) -m build $(OPTS)
 
 docs: $(DOCS) ## Update doc files
 
@@ -50,6 +50,9 @@ upload: wheel sdist ## Upload to pypi
 	twine upload -r $(PYPI) --skip-existing $(FILES)
 
 # Other targets.
+
+tools: ## Install dev tools
+	pip install $(OPTS) $(TOOLS)
 
 %.md: %
 	pandoc -f rst -o $<.md $<
