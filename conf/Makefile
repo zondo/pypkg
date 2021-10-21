@@ -1,10 +1,7 @@
 # Makefile for pinning requirements.
 
-include config.mk
-
-REQ = requirements
-DEV = dev-requirements
-TXT = $(REQ).txt $(DEV).txt
+REQ = $(wildcard requirements*.in)
+TXT = $(subst .in,.txt,$(REQ))
 
 COMPILE = $(PYTHON) -m piptools compile -v
 
@@ -15,3 +12,5 @@ requirements: $(TXT)
 %.txt: %.in constraints.txt
 	@ echo Making $@
 	@ $(COMPILE) $< -o $@
+
+include config.mk
