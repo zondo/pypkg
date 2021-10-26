@@ -1,7 +1,3 @@
-# Constraints.
+# Package version constraints.
 
 # Nothing here yet.
-
-# Local Variables:
-# mode: pip-requirements
-# End:
