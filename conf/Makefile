@@ -13,12 +13,12 @@ requirements: $(TXT) ## Build requirements files
 
 upgrade-pkg: ## Upgrade a single package (PKG)
 	@ echo Upgrading $(PKG)
-	@ touch $(IN)
+	@ touch $(REQ)
 	@ $(MAKE) $(TXT) OPTS="$(addprefix -P ,$(PKG))"
 
 upgrade-all: ## Upgrade all packages
 	@ echo Upgrading all packages
-	@ touch $(IN)
+	@ touch $(REQ)
 	@ $(MAKE) $(TXT) OPTS=-U
 
 %.txt: %.in constraints.txt
