@@ -3,11 +3,23 @@
 REQ = $(wildcard requirements*.in)
 TXT = $(subst .in,.txt,$(REQ))
 
-COMPILE = $(PYTHON) -m piptools compile -v
+IDXOPTS = $(addprefix --extra-index-url ,$(INDEXES))
+PIPOPTS = --pip-args '$(PIPARGS)'
+COMPILE = $(PYTHON) -m piptools compile -v $(IDXOPTS) $(PIPOPTS) $(OPTS)
 
 all: requirements
 
-requirements: $(TXT)
+requirements: $(TXT) ## Build requirements files
+
+upgrade-pkg: ## Upgrade a single package (PKG)
+	@ echo Upgrading $(PKG)
+	@ touch $(IN)
+	@ $(MAKE) $(TXT) OPTS="$(addprefix -P ,$(PKG))"
+
+upgrade-all: ## Upgrade all packages
+	@ echo Upgrading all packages
+	@ touch $(IN)
+	@ $(MAKE) $(TXT) OPTS=-U
 
 %.txt: %.in constraints.txt
 	@ echo Making $@
