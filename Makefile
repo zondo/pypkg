@@ -5,15 +5,23 @@ include conf/config.mk
 SOURCES = pypkg.py
 DOCS    = README README.md
 
-CLEANFILES = build dist *.egg* *.el __pycache__ .tox
+REQFILES   = $(wildcard conf/requirements*.txt)
+CLEANFILES = build dist venv *.egg* *.el __pycache__ .tox
 MAKEFLAGS  = --no-print-directory
 
-TOOLS = pip-tools build twine flake8 mypy
+PIP = $(PYTHON) -m pip
 
 all: help
 
+# Setup.
+
+venv: ## Set up virtual environment
+	$(PYTHON) -m venv venv
+
 dev: ## Set up for developing
-	pip install -e .
+	$(PIP) install -U pip
+	$(PIP) install $(addprefix -r ,$(REQFILES))
+	$(PIP) install -e .
 
 # Packaging.
 
@@ -50,9 +58,6 @@ upload: wheel sdist ## Upload to pypi
 	twine upload -r $(PYPI) --skip-existing $(FILES)
 
 # Other targets.
-
-tools: ## Install dev tools
-	pip install $(OPTS) $(TOOLS)
 
 %.md: %
 	pandoc -f rst -o $<.md $<
