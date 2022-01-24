@@ -1,6 +1,10 @@
 # Testing dependencies.
 
 -c constraints.txt
+-c requirements.txt
 
+flake8
+mypy
 pytest
 pytest-runner
+

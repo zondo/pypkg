@@ -21,8 +21,12 @@ upgrade-all: ## Upgrade all packages
 	@ touch $(REQ)
 	@ $(MAKE) $(TXT) OPTS=-U
 
+update-deps: ## Update requirement dependencies
+	@ $(PYTHON) Mkdeps.py $(REQ) > requirements.mk
+
 %.txt: %.in constraints.txt
 	@ echo Making $@
 	@ $(COMPILE) $< -o $@
 
 include config.mk
+sinclude requirements.mk
