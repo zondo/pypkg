@@ -1,6 +1,5 @@
 # Testing dependencies.
 
--c constraints.txt
 -c requirements.txt
 
 flake8
