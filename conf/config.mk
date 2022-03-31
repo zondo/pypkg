@@ -3,7 +3,7 @@
 # Detect operating system.
 OS = $(shell uname -o)
 
-ifeq ($(OS), Linux)
+ifeq ($(OS), GNU/Linux)
 PYTHON = python3
 OSNAME = linux
 LINUX = true
