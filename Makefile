@@ -26,7 +26,7 @@ dev: ## Set up for developing
 # Packaging.
 
 build: docs ## Build packages
-	$(PYTHON) -m build $(OPTS)
+	$(PYTHON) -m build -n $(OPTS)
 
 docs: $(DOCS) ## Update doc files
 
