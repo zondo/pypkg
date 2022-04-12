@@ -2,8 +2,8 @@
 
 include conf/config.mk
 
-SOURCES = pypkg.py
-DOCS    = README README.md
+SRCDIR = src
+DOCS   = README README.md
 
 REQFILES   = $(wildcard conf/requirements*.txt)
 CLEANFILES = build dist venv *.egg* *.el __pycache__ .tox
@@ -32,16 +32,19 @@ docs: $(DOCS) ## Update doc files
 
 # Testing.
 
-check: test flake mypy ## Run all tests
+check: test flake black isort ## Run all tests
 
 test: ## Run package tests
 	$(PYTHON) -m pytest -v
 
 flake: ## Run flake8 on sources
-	flake8 $(SOURCES)
+	flake8 $(SRCDIR)
 
-mypy: ## Run mypy on sources
-	mypy $(SOURCES)
+black: ## Run black on sources
+	black $(SRCDIR)
+
+isort: ## Run isort on sources
+	isort $(SRCDIR)
 
 # Uploading to PyPI.
 
