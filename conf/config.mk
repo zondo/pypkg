@@ -1,7 +1,7 @@
 # Common config stuff.
 
 # Detect operating system.
-OS = $(shell uname -o)
+OS = $(shell uname)
 
 ifeq ($(OS), GNU/Linux)
 PYTHON = python3
