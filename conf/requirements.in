@@ -1,5 +1,5 @@
 # Package dependencies.
 
--c constraints.txt
+-c requirements-test.txt
 
 # Nothing here yet.

@@ -1,12 +1,12 @@
 # Testing dependencies.
 
--c requirements.txt
+-c constraints.txt
 
 flake8
-mypy
+black
+isort
 
 pytest
-pytest-runner
 pytest-cov
 pytest-profiling
 
