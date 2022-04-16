@@ -2,8 +2,9 @@
 
 include conf/config.mk
 
-SRCDIR = src
-DOCS   = README README.md
+PACKAGE = pypkg
+SRCDIR  = src
+DOCS    = README README.md
 
 REQFILES   = $(wildcard conf/requirements*.txt)
 CLEANFILES = build dist venv *.egg* *.el __pycache__ .tox
@@ -19,9 +20,13 @@ venv: ## Set up virtual environment
 	$(PYTHON) -m venv venv
 
 dev: ## Set up for developing
+	@ $(MAKE) -C -s conf requirements
 	$(PIP) install -U pip
 	$(PIP) install $(addprefix -r ,$(REQFILES))
 	$(PIP) install -e .
+
+deps: ## Show package dependency tree
+	@ pipdeptree -p $(PACKAGE)
 
 # Packaging.
 
@@ -50,6 +55,10 @@ isort: ## Run isort on sources
 
 PYPI   = pypi
 FILES  = dist/*
+
+release-check: ## Check release
+	@ make build
+	check-wheel-contents dist/*.whl
 
 upload-check: ## Check uploads
 	twine check $(FILES)

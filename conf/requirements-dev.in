@@ -5,4 +5,5 @@
 build
 pip-tools
 pipdeptree
+check-wheel-contents
 twine
