@@ -1,1 +1,2 @@
 include Makefile README.md
+recursive-include src *.py
