@@ -20,7 +20,7 @@ venv: ## Set up virtual environment
 	$(PYTHON) -m venv venv
 
 dev: ## Set up for developing
-	@ $(MAKE) -C -s conf requirements
+	@ $(MAKE) -s -C conf requirements
 	$(PIP) install -U pip
 	$(PIP) install $(addprefix -r ,$(REQFILES))
 	$(PIP) install -e .
