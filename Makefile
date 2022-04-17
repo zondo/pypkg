@@ -1,5 +1,9 @@
 # Makefile for pypkg.
 
+# TODO: customize this file
+
+# FIXME: add changelog support
+
 include conf/config.mk
 
 PACKAGE = pypkg
@@ -52,12 +56,7 @@ black: ## Run black on sources
 isort: ## Run isort on sources
 	isort $(SRCDIR)
 
-# Release.
-
-PYPI   = pypi
-FILES  = dist/*
-
-# FIXME: add changelog support
+# Versioning.
 
 BUMPVER  = bump2version --config-file=$(BUMPCONF) --allow-dirty
 BUMPCONF = conf/version.cfg
@@ -68,6 +67,14 @@ bump-major: ## Bump major version
 
 bump-minor: ## Bump minor version
 	@ $(BUMPVER) minor $(VERSION)
+
+bump-patch: ## Bump patch version
+	@ $(BUMPVER) patch $(VERSION)
+
+# Release.
+
+PYPI   = pypi
+FILES  = dist/*
 
 release-check: ## Check release
 	@ make build
