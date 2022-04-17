@@ -6,7 +6,7 @@ PACKAGE = pypkg
 SRCDIR  = src
 DOCS    = README README.md
 
-REQFILES   = $(wildcard conf/requirements*.txt)
+REQFILES   = $(subst .in,.txt,$(wildcard conf/requirements*.in))
 CLEANFILES = build dist venv *.egg* *.el __pycache__ .tox
 MAKEFLAGS  = --no-print-directory
 
@@ -32,6 +32,7 @@ deps: ## Show package dependency tree
 
 build: docs ## Build packages
 	$(PYTHON) -m build -n $(OPTS)
+	$(PYTHON) -m build -n -s $(OPTS)
 
 docs: $(DOCS) ## Update doc files
 
