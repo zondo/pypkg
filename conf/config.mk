@@ -1,33 +1,20 @@
 # Common config stuff.
 
-# Detect operating system.
-OS = $(shell uname)
+# Get the host system.
+SYSCMD = import platform; print(platform.system())
+SYSTEM = $(shell python -c "$(SYSCMD)")
 
-ifeq ($(OS), Linux)
-PYTHON = python3
-OSNAME = linux
-LINUX = true
-else ifeq ($(OS), Darwin)
-PYTHON = python3
-OSNAME = mac
-MAC = true
-else ifeq ($(OS), Msys)
-PYTHON = python
-OSNAME = windows
-WINDOWS = true
-else
-$(error Unknown OS: $(OS))
-endif
+# Get makefile help text.
+export SHOW_HELP
+define SHOW_HELP
 
-# Set help column formatting.
-ifeq ($(OSNAME), windows)
-COLFMT = cat
-else
-COLFMT = column -t -s:
-endif
+import re, sys
+text = sys.stdin.read()
+pattern = r"^([a-zA-Z_-]+):.*?## (.*)"
+for match in re.finditer(pattern, text, re.M):
+    print("%-15s %s" % match.groups())
+
+endef
 
 help: ## This help message
-	@ echo "Usage: make [target]"
-	@ echo
-	@ grep -h ":.*##" $(MAKEFILE_LIST) | grep -v 'sed -e' | \
-	  sed -e 's/:.*##/:/' | $(COLFMT)
+	@ cat $(MAKEFILE_LIST) | python -c "$$SHOW_HELP"
