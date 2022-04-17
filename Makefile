@@ -52,10 +52,22 @@ black: ## Run black on sources
 isort: ## Run isort on sources
 	isort $(SRCDIR)
 
-# Uploading to PyPI.
+# Release.
 
 PYPI   = pypi
 FILES  = dist/*
+
+# FIXME: add changelog support
+
+BUMPVER  = bump2version --config-file=$(BUMPCONF) --allow-dirty
+BUMPCONF = conf/version.cfg
+VERSION  = $(SRCDIR)/$(PACKAGE)/__init__.py
+
+bump-major: ## Bump major version
+	@ $(BUMPVER) major $(VERSION)
+
+bump-minor: ## Bump minor version
+	@ $(BUMPVER) minor $(VERSION)
 
 release-check: ## Check release
 	@ make build
