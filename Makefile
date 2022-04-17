@@ -64,10 +64,10 @@ release-check: ## Check release
 upload-check: ## Check uploads
 	twine check $(FILES)
 
-upload-test: wheel sdist ## Upload to pypitest
+upload-test: upload-check ## Upload to pypitest
 	@ $(MAKE) upload PYPI=pypitest
 
-upload: wheel sdist ## Upload to pypi
+upload: upload-check ## Upload to pypi
 	twine upload -r $(PYPI) --skip-existing $(FILES)
 
 # Other targets.
