@@ -1,5 +1,7 @@
 # Common config stuff.
 
+PYTHON = python
+
 # Get the host system.
 SYSCMD = import platform; print(platform.system())
 SYSTEM = $(shell python -c "$(SYSCMD)")
