@@ -14,7 +14,8 @@ REQFILES   = $(subst .in,.txt,$(wildcard conf/requirements*.in))
 CLEANFILES = build dist venv *.egg* *.el __pycache__ .tox
 MAKEFLAGS  = --no-print-directory
 
-PIP = $(PYTHON) -m pip
+PYTHON = python
+PIP    = $(PYTHON) -m pip
 
 all: help
 
