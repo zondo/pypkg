@@ -8,9 +8,10 @@ include conf/config.mk
 
 PACKAGE = pypkg
 SRCDIR  = src
+CONFDIR = conf
 DOCS    = README README.md
 
-REQFILES   = $(subst .in,.txt,$(wildcard conf/requirements*.in))
+REQFILES   = $(subst .in,.txt,$(wildcard $(CONFDIR)/requirements*.in))
 CLEANFILES = build dist venv *.egg* *.el __pycache__ .tox
 MAKEFLAGS  = --no-print-directory
 
@@ -21,11 +22,10 @@ all: help
 # Setup.
 
 venv: ## Set up virtual environment
-	$(PYTHON) -m venv venv
+	$(PYTHON) -m venv venv --upgrade-deps
 
 dev: ## Set up for developing
-	@ $(MAKE) -s -C conf requirements
-	$(PIP) install -U pip
+	@ $(MAKE) -s -C $(CONFDIR) requirements
 	$(PIP) install $(addprefix -r ,$(REQFILES))
 	$(PIP) install -e .
 
@@ -59,7 +59,7 @@ isort: ## Run isort on sources
 # Versioning.
 
 BUMPVER  = bump2version --config-file=$(BUMPCONF) --allow-dirty
-BUMPCONF = conf/version.cfg
+BUMPCONF = $(CONFDIR)/version.cfg
 VERSION  = $(SRCDIR)/$(PACKAGE)/__init__.py
 
 bump-major: ## Bump major version
