@@ -2,4 +2,7 @@
 
 -c requirements-test.txt
 
-# TODO: add requirements
+# TODO: set requirements
+
+docopt
+schema
