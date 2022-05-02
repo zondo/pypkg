@@ -1,2 +1,9 @@
+# TODO: update this file
+
 include Makefile README.md
-recursive-include src *.py
+
+recursive-include src *.py *.cfg
+recursive-include tests Makefile *.py *.cfg
+recursive-include conf Makefile *.in *.txt *.mk *.py *.cfg
+
+global-exclude *.py[cod]
