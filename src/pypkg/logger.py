@@ -13,13 +13,13 @@ log = logging.getLogger(__program__)
 log.addHandler(logging.NullHandler())
 
 
-def log_init(loglevel=None):
+def init_log(loglevel=None):
     # Add a stderr handler.
     handler = logging.StreamHandler()
     log.addHandler(handler)
 
     # Set the log message format.
-    fmt = '%(name)s: %(levelname)s: %(message)s'
+    fmt = "%(name)s: %(levelname)s: %(message)s"
     formatter = logging.Formatter(fmt)
     handler.setFormatter(formatter)
 

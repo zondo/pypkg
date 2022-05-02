@@ -23,8 +23,9 @@ Options:
 import sys
 
 from . import __program__, __version__
+from .config import init_config
 from .docopts import docopts
-from .logger import log, log_init
+from .logger import init_log, log
 
 
 def main(args=sys.argv[1:]):
@@ -42,16 +43,19 @@ def main(args=sys.argv[1:]):
 
 
 def run(opts):
-    """Run a command.
+    """
+    Run a single command.
     """
 
-    log_init()
+    # Get configuration settings.
+    config = init_config()
 
-    if opts.debug:
-        print(opts)
+    # Set up logging.
+    init_log()
 
     # TODO: add commands here
     log.info("write me")
+    config.write(sys.stdout)
 
 
 if __name__ == "__main__":
