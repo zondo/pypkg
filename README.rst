@@ -1,6 +1,3 @@
-.. TODO: update this file
-.. TODO: maybe write some doctests
-
 ======================================
  pypkg -- a bare-bones python package
 ======================================

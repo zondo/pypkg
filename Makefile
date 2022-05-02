@@ -2,17 +2,15 @@
 
 # TODO: customize this file
 
-# FIXME: add changelog support
-
 include conf/config.mk
 
 PACKAGE = pypkg
 SRCDIR  = src
 CONFDIR = conf
-DOCS    = README README.md
+DOCS    = README.rst README.md
 
 REQFILES   = $(subst .in,.txt,$(wildcard $(CONFDIR)/requirements*.in))
-CLEANFILES = build dist venv *.egg* *.el __pycache__ .tox
+CLEANFILES = build dist venv *.egg* __pycache__ .tox
 MAKEFLAGS  = --no-print-directory
 
 PIP = $(PYTHON) -m pip
@@ -91,9 +89,8 @@ upload: upload-check ## Upload to pypi
 
 # Other targets.
 
-%.md: %
-	pandoc -f rst -o $<.md $<
+%.md: %.rst
+	pandoc -f rst -o $@ $<
 
 clean: ## Clean up
-	find . -name '*.py[co]' | xargs rm
 	rm -rf $(CLEANFILES)
