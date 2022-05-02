@@ -1,3 +1,6 @@
+.. TODO: update this file
+.. TODO: maybe write some doctests
+
 ======================================
  pypkg -- a bare-bones python package
 ======================================
@@ -20,10 +23,7 @@ you like.  Summary of features:
 For best results, you'll need to install several python packages
 (pip-tools, build, twine, flake8, mypy) and pandoc.
 
-.. TODO: write the README file
-.. TODO: maybe write some doctests
-
-See if python is working::
+A doctest to see if python is working::
 
     >>> 2 + 2
     4
