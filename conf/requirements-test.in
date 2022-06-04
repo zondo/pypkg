@@ -5,6 +5,9 @@
 -c constraints.txt
 
 flake8
+flake8-black
+flake8-bugbear
+
 black
 isort
 

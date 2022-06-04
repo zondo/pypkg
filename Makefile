@@ -40,10 +40,13 @@ docs: $(DOCS) ## Update doc files
 
 # Testing.
 
-check: test flake black isort ## Run all tests
+check: test mypy flake black isort ## Run all tests
 
 test: ## Run package tests
 	$(PYTHON) -m pytest -v
+
+mypy: ## Run mypy on sources
+	mypy $(SRCDIR)
 
 flake: ## Run flake8 on sources
 	flake8 $(SRCDIR)
