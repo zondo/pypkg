@@ -8,7 +8,7 @@ PKG    = pypkg
 RUN    = $(PYTHON) -m pytest $(OPTS) $(ARGS)
 COVER  = --cov $(PKG) --cov-config=$(CFG) $(addprefix --cov-report , $(REPORT))
 PROF   = --profile
-CFG    = coverage.cfg
+CFG    = ../setup.cfg
 REPORT = term html
 
 CLEANFILES = .coverage htmlcov prof __pycache__
