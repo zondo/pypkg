@@ -14,5 +14,6 @@ safety
 
 pytest
 pytest-cov
+pytest-mock
 pytest-profiling
 

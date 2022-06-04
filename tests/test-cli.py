@@ -11,11 +11,8 @@ def test_main():
         cli.main(["-h"])
 
 
-def test_exception(monkeypatch):
-    def mock_run(opts):
-        raise NotImplementedError
-
-    monkeypatch.setattr(cli, "run", mock_run)
+def test_exception(mocker):
+    mocker.patch("pypkg.cli.run", side_effect=NotImplementedError)
 
     with raises(SystemExit):
         cli.main([])
