@@ -4,16 +4,16 @@
 Usage: {prog} [options]
 
 Description:
-    WRITE ME
+    TODO: WRITE ME
 
 Commands:
-    WRITE ME
+    TODO: WRITE ME
 
 Arguments:
-    WRITE ME
+    TODO: WRITE ME
 
 Options:
-    WRITE ME
+    TODO: WRITE ME
 
     --version      Print program version
     --trace        Print traceback on error
