@@ -30,8 +30,7 @@ from .logger import init_log, log
 
 def main(args=sys.argv[1:]):
     usage = __doc__.format(prog=__program__)
-    version = f"{__program__} {__version__}"
-    opts = docopts(usage, argv=args, version=version)
+    opts = docopts(usage, argv=args, program=__program__, version=__version__)
 
     try:
         run(opts)
@@ -39,7 +38,7 @@ def main(args=sys.argv[1:]):
         if opts.trace:
             raise
         else:
-            sys.exit("%s: error: %s" % (__program__, str(exc)))
+            sys.exit(f"{__program__}: error: {str(exc)}")
 
 
 def run(opts):

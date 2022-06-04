@@ -17,18 +17,24 @@ class docopts(object):
     """
 
     def __init__(self, *args, **kw):
+        # Get program name and version.
+        program = kw.pop("program")
+        version = kw.pop("version")
+
         # Get option schema.
         schema = kw.pop("schema", {})
 
         # Pass rest of args to docopt.
-        opts = docopt(*args, **kw)
+        opts = docopt(*args, version=f"{program} {version}", **kw)
 
         # Validate options.
         try:
             s = Schema(schema, ignore_extra_keys=True)
             validopts = s.validate(opts)
         except SchemaError as exc:
-            sys.exit("Error: " + str(exc))
+            errlist = [e for e in exc.errors if e]
+            err = "; ".join(errlist) if errlist else str(exc)
+            sys.exit(f"{program}: error: {err}")
 
         # Merge validated options back in.
         opts.update(validopts)
