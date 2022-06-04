@@ -24,6 +24,9 @@ upgrade-all: ## Upgrade all packages
 depend: ## Update requirement dependencies
 	@ $(PYTHON) requirements.py $(REQ) > requirements.mk
 
+safety: ## Run safety check on requirements
+	@ safety check --full-report $(addprefix -r ,$(TXT))
+
 %.txt: %.in constraints.txt
 	@ echo Making $@
 	@ $(COMPILE) $< -o $@

@@ -10,6 +10,7 @@ flake8-bugbear
 
 black
 isort
+safety
 
 pytest
 pytest-cov
