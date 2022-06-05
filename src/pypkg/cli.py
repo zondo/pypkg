@@ -1,20 +1,18 @@
-# TODO: use or delete this
+# TODO: update or delete this
 
 """
-Usage: {prog} [options]
+Usage: {prog} [options] [FILE]
 
 Description:
     TODO: WRITE ME
 
-Commands:
-    TODO: WRITE ME
-
 Arguments:
-    TODO: WRITE ME
+    FILE           Input file
 
-Options:
-    TODO: WRITE ME
+Output options:
+    -o FILE        Write to specified file instead of stdout
 
+Other options:
     --version      Print program version
     --trace        Print traceback on error
     --debug        Print debugging info
@@ -22,15 +20,24 @@ Options:
 
 import sys
 
+from schema import Or, Use
+
 from . import __program__, __version__
+
 from .config import init_config
 from .docopts import docopts
 from .logger import init_log, log
 
+schema = {
+    "FILE": Or(None, Use(open, error="input file not found")),
+    "-o": Use(lambda f: open(f, "w") if f else sys.stdout),
+}
+
 
 def main(args=sys.argv[1:]):
     usage = __doc__.format(prog=__program__)
-    opts = docopts(usage, argv=args, program=__program__, version=__version__)
+    opts = docopts(usage, argv=args, schema=schema,
+                   program=__program__, version=__version__)
 
     try:
         run(opts)

@@ -24,7 +24,4 @@ def init_log(loglevel=None):
     handler.setFormatter(formatter)
 
     # Set log level.
-    if loglevel is None:
-        loglevel = logging.INFO
-
-    log.setLevel(loglevel)
+    log.setLevel(loglevel or logging.INFO)
