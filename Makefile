@@ -41,7 +41,7 @@ docs: $(DOCS) ## Update doc files
 
 # Testing.
 
-check: test mypy flake black isort ## Run all tests
+check: test mypy flake black isort safety ## Run all tests
 
 test: ## Run package tests
 	$(PYTHON) -m pytest -v
@@ -57,6 +57,9 @@ black: ## Run black on sources
 
 isort: ## Run isort on sources
 	isort $(SRCDIR)
+
+safety: ## Run package safety check
+	@ $(MAKE) -C $(CONFDIR) $@
 
 # Versioning.
 
