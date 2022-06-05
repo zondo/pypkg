@@ -20,9 +20,10 @@ all: help
 # Setup.
 
 venv: ## Set up virtual environment
-	$(PYTHON) -m venv venv --upgrade-deps
+	$(PYTHON) -m venv venv
 
 dev: ## Set up for developing
+	$(PIP) install -U pip pip-tools wheel
 	@ $(MAKE) -s -C $(CONFDIR) requirements
 	$(PIP) install $(addprefix -r ,$(REQFILES))
 	$(PIP) install -e .

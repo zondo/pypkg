@@ -5,6 +5,7 @@
 -c requirements-test.txt
 
 build
+wheel
 pip-tools
 pipdeptree
 bumpversion
