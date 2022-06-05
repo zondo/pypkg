@@ -4,14 +4,20 @@ from pytest import raises
 from pypkg import cli
 
 
-def test_main():
+def test_main(capsys):
     cli.main([])
+    captured = capsys.readouterr()
+    assert "write me" in captured.err
 
+
+def test_usage(capsys):
     with raises(SystemExit):
         cli.main(["-h"])
+        captured = capsys.readouterr()
+        assert "Usage:" in captured.out
 
 
-def test_schema():
+def test_error():
     with raises(SystemExit, match="input file not found"):
         cli.main(["nosuchfile"])
 
