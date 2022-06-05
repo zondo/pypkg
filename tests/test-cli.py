@@ -1,6 +1,5 @@
 # TODO: update or remove this file
 
-from schema import SchemaError
 from pytest import raises
 from pypkg import cli
 
@@ -13,10 +12,8 @@ def test_main():
 
 
 def test_schema():
-    with raises(SystemExit) as exc:
+    with raises(SystemExit, match="input file not found"):
         cli.main(["nosuchfile"])
-
-    assert "input file not found" in str(exc.value)
 
 
 def test_exception(mocker):
