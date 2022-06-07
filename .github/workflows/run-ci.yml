@@ -24,6 +24,8 @@ jobs:
 
       - name: Run tests
         run: make test
+
+      - name: Upload coverage report
         uses: actions/upload-artifacts@v3
         with:
           name: coverage-report
