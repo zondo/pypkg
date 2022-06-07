@@ -7,6 +7,8 @@ include conf/config.mk
 PACKAGE = pypkg
 SRCDIR  = src
 CONFDIR = conf
+TESTDIR = tests
+DOCTEST = README.rst
 DOCS    = README.rst README.md
 
 REQFILES   = $(subst .in,.txt,$(wildcard $(CONFDIR)/requirements*.in))
@@ -44,7 +46,9 @@ docs: $(DOCS) ## Update doc files
 check: test mypy flake black isort safety ## Run all tests
 
 test: ## Run package tests
-	$(PYTHON) -m pytest -v
+	@ echo running doctests
+	@ $(PYTHON) -m pytest $(DOCTEST)
+	@ $(MAKE) -C $(TESTDIR) $@
 
 mypy: ## Run mypy on sources
 	mypy $(SRCDIR)

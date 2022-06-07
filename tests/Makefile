@@ -17,14 +17,13 @@ CLEANFILES = .coverage htmlcov prof __pycache__
 
 all: help
 
-test: ## Run tests
-	$(RUN) $(TEST)
-
-cover: ## Run tests with coverage
-	$(RUN) $(COVER) $(TEST)
+test: ## Run tests with coverage
+	@ echo running unit tests
+	@ $(RUN) $(COVER) $(TEST)
 
 profile: ## Run tests with profiling
-	$(RUN) $(PROF) $(TEST)
+	@ echo running tests with profiling
+	@ $(RUN) $(PROF) $(TEST)
 
 clean: ## Clean up
 	rm -rf $(CLEANFILES)
