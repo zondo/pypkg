@@ -1,0 +1,22 @@
+# TODO: update or remove this
+
+image: ubuntu/lts
+
+packages:
+  - python3-pip
+
+sources:
+  - git+https://git.sr.ht/~zondo/pypkg
+
+tasks:
+  - setup: |
+      cd pypkg
+      make dev
+  - test: |
+      cd pypkg
+      make test
+
+triggers:
+  - condition: failure
+    action: email
+    to: zondo42@gmail.com

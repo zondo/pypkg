@@ -1,3 +1,5 @@
+# TODO: update or remove this
+
 name: CI
 
 on: [push]
