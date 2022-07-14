@@ -1,0 +1,9 @@
+# Documentation requirements.
+
+# TODO: update requirements
+
+-c requirements-test.txt
+
+mkdocs
+mkdocs-material
+mkdocstrings[python]

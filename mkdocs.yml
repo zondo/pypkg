@@ -1,0 +1,16 @@
+# TODO: update this file
+
+site_name: pykpg
+
+theme:
+  name: material
+
+plugins:
+  - mkdocstrings
+
+nav:
+  - index.md
+  - tut.md
+  - howto.md
+  - ref.md
+  - exp.md

@@ -1,3 +1,4 @@
 # Package version constraints.
 
-# Nothing here yet.
+# flake8 4.x requirements are incompatible with mkdocs
+flake8<4.0
