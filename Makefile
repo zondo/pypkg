@@ -99,9 +99,11 @@ upload: upload-check ## Upload to pypi
 	twine upload -r $(PYPI) --skip-existing $(FILES)
 
 # Other targets.
+%.md: %.org
+	pandoc -o $@ $<
 
-%.md: %.rst
-	pandoc -f rst -o $@ $<
+%.rst: %.org
+	pandoc -o $@ $<
 
 clean: ## Clean up
 	rm -rf $(CLEANFILES)
