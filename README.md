@@ -4,9 +4,8 @@ This is an outline of the kind of python package I usually make. Use it
 as a starting point, replacing `pypkg`{.verbatim} throughout, or just
 steal the bits you like. Summary of features:
 
--   A `README`{.verbatim} in reStructuredText format, with
-    auto-conversion to `README.md`{.verbatim} for places that only
-    handle markdown (e.g., github, sourcehut).
+-   A `README`{.verbatim} in [Org](https://orgmode.org/) format, with
+    auto-conversion to reStructuredText and Markdown.
 
 -   Prepopulated `setup.cfg`{.verbatim} with the most common entries.
 

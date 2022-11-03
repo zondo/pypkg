@@ -5,9 +5,8 @@ This is an outline of the kind of python package I usually make. Use it
 as a starting point, replacing ``pypkg`` throughout, or just steal the
 bits you like. Summary of features:
 
--  A ``README`` in reStructuredText format, with auto-conversion to
-   ``README.md`` for places that only handle markdown (e.g., github,
-   sourcehut).
+-  A ``README`` in `Org <https://orgmode.org/>`__ format, with
+   auto-conversion to reStructuredText and Markdown.
 
 -  Prepopulated ``setup.cfg`` with the most common entries.
 
