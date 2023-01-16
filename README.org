@@ -1,6 +1,6 @@
-#+options: author:nil num:nil toc:nil
-
 * pypkg -- a bare-bones python package
+
+#+options: author:nil num:nil toc:nil
 
 This is an outline of the kind of python package I usually make.  Use it as
 a starting point, replacing =pypkg= throughout, or just steal the bits you
