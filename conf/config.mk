@@ -1,6 +1,6 @@
 # Common config stuff.
 
-PYTHON = python
+PYTHON = python3
 
 # Get the host system.
 SYSCMD = import platform; print(platform.system())
