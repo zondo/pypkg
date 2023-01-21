@@ -6,7 +6,7 @@ a starting point, replacing `pypkg` throughout, or just steal the bits you
 like.  Summary of features:
 
 -   Documentation files in [Org](https://orgmode.org/) format, which I convert to Markdown.  These
-    are kept on the `orgdocs` branch.
+    are kept on the `orgdocs` branch, and merged into `master` from there.
 
 -   Prepopulated `setup.cfg` with the most common entries.
 
