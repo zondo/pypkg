@@ -5,7 +5,8 @@ This is an outline of the kind of python package I usually make.  Use it as
 a starting point, replacing `pypkg` throughout, or just steal the bits you
 like.  Summary of features:
 
--   Documentation files in [Org](https://orgmode.org/) format, which I convert to Markdown.
+-   Documentation files in [Org](https://orgmode.org/) format, which I convert to Markdown.  These
+    are kept on the `orgdocs` branch.
 
 -   Prepopulated `setup.cfg` with the most common entries.
 
