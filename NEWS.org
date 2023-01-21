@@ -1,7 +1,7 @@
-#+options: author:nil num:nil toc:nil
-
 * Release History
+
+#+options: author:nil num:nil toc:nil
 
 ** Version 0.0 (unreleased)
 
-- Er... not much here yet.
+- TODO: write me

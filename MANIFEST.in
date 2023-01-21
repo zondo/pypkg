@@ -1,6 +1,6 @@
 # TODO: update this file
 
-include Makefile README.md NEWS.rst TODO.rst
+include Makefile README.md NEWS.md LICENSE
 
 recursive-include src *.py *.cfg
 recursive-include tests Makefile *.py *.cfg

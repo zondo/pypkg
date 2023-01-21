@@ -8,8 +8,7 @@ PACKAGE = pypkg
 SRCDIR  = src
 CONFDIR = conf
 TESTDIR = tests
-DOCTEST = README.rst
-DOCS    = README.rst README.md
+DOCTEST = README.md
 
 REQFILES   = $(subst .in,.txt,$(wildcard $(CONFDIR)/requirements*.in))
 CLEANFILES = build dist venv *.egg* __pycache__ .tox
@@ -35,11 +34,9 @@ deps: ## Show package dependency tree
 
 # Packaging.
 
-build: docs ## Build packages
+build: ## Build packages
 	$(PYTHON) -m build -n $(OPTS)
 	$(PYTHON) -m build -n -s $(OPTS)
-
-docs: $(DOCS) ## Update doc files
 
 # Testing.
 
@@ -47,7 +44,7 @@ check: test mypy flake black isort safety ## Run all tests
 
 test: ## Run package tests
 	@ echo running doctests
-	@ $(PYTHON) -m pytest $(DOCTEST)
+	@ $(PYTHON) -m pytest --doctest-glob=*.md -v $(DOCTEST)
 	@ $(MAKE) -C $(TESTDIR) $@
 
 mypy: ## Run mypy on sources
@@ -97,13 +94,6 @@ upload-test: upload-check ## Upload to pypitest
 
 upload: upload-check ## Upload to pypi
 	twine upload -r $(PYPI) --skip-existing $(FILES)
-
-# Other targets.
-%.md: %.org
-	pandoc -o $@ $<
-
-%.rst: %.org
-	pandoc -o $@ $<
 
 clean: ## Clean up
 	rm -rf $(CLEANFILES)
